@@ -82,66 +82,106 @@ public class Main {
                             System.out.println("Hvilken film vil du se?");
                             String chosenMovie = choice.nextLine();
                             boolean found = false;
-                            for (Movie m: movies){
-                                if(m.getName().equalsIgnoreCase(chosenMovie)){
+                            for (Movie m : movies) {
+                                if (m.getName().equalsIgnoreCase(chosenMovie)) {
                                     found = true;
                                 }
                             }
-                            if (found){
+                            if (found) {
                                 System.out.println("Du har valgt at se: " + chosenMovie);
                                 System.out.println("Filmen afspilles nu");
-                                if(!watchedMovieList.contains(chosenMovie)){
+                                if (!watchedMovieList.contains(chosenMovie)) {
                                     watchedMovieList.add(chosenMovie);
                                     userWriter.write(chosenMovie + "\n ");
                                     userWriter.close();
                                 }
                             }
-                            if(!found){
+                            if (!found) {
                                 System.out.println("Filmen findes ikke.");
                             }
 
+                        case "2":
 
+
+                            for (Series s : series) {
+                                System.out.println(s.toString());
+                            }
+                            break;
+
+                        case "3":
+                            File savedMovieFile = new File("C:\\Users\\Public\\SP3-TuransBranch-displayMethod\\Data\\SavedMovieList.txt");
+                            //FileInputStream - allows us to read bytes from a file - one byte at a time
+                            FileInputStream readFile = new FileInputStream(savedMovieFile);
+
+                            int oneByte;
+                            //We can write to System.out 'onebyte' at a time using its write() method.
+                            //FileInputStream returns -1 when it reaches the end of the file.
+                            while ((oneByte = readFile.read()) != -1) {
+                                System.out.print((char) oneByte);
+                            }
+                            System.out.flush();
+                            break;
+
+                        case "4":
+
+                            File watchedMoviesFile = new File("C:\\Users\\Public\\SP3-TuransBranch-displayMethod\\Data\\WatchedMovies.txt");
+                            //FileInputStream - allows us to read bytes from a file - one byte at a time
+                            FileInputStream readFile1 = new FileInputStream(watchedMoviesFile);
+
+                            int oneByte1;
+                            //We can write to System.out 'onebyte' at a time using its write() method.
+                            //FileInputStream returns -1 when it reaches the end of the file.
+                            while ((oneByte1 = readFile1.read()) != -1) {
+                                System.out.print((char) oneByte1);
+                            }
+                            System.out.flush();
+                            break;
+
+                        case "5":
+                        switch (choice.nextLine()) {
+                            case "film":
+                                System.out.println("Hvilken film leder du efter?");
+                                String movieSearch = choice.nextLine();
+
+                                boolean foundMovie = false;
+
+                                for (Movie m : movies) {
+                                    if (m.getName().toLowerCase().contains(movieSearch.toLowerCase())) {
+                                        System.out.println(m.toString());
+                                        foundMovie = true;
+                                    }
+
+                                }
+                                if (!foundMovie) {
+                                    System.out.println("Denne film findes ikke i vores bibliotek");
+                                    break;
+                                }
+
+                            case "serie":
+                                System.out.println("Hvilken serie leder du efter");
+                                String seriesSearch = choice.nextLine();
+
+                                boolean found1 = false;
+                                for (Series s : series) {
+                                    if (s.getName().toLowerCase().contains(seriesSearch.toLowerCase())) {
+                                        System.out.println(s.toString());
+                                        found = true;
+                                    }
+                                }
+                                //TODO
+                                //FOUND HER KAN IKKE BLIVE FUNDET - RET NÅR DU KOMMER HJEM !!!!!!
+                                if (!found1) {
+                                    System.out.println("Denne film findes ikke i vores bibliotek");
+                                    break;
+                                }
+
+                        }
 
 
                     }
 
-
             }
-
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
